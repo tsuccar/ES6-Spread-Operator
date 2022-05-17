@@ -10,27 +10,32 @@ function App() {
   function handleChange(event) {
     const { name, value } = event.target;
 
-    setContact(prevValue => {
-      if (name === "fName") {
-        return {
-          fName: value,
-          lName: prevValue.lName,
-          email: prevValue.email
-        };
-      } else if (name === "lName") {
-        return {
-          fName: prevValue.fName,
-          lName: value,
-          email: prevValue.email
-        };
-      } else if (name === "email") {
-        return {
-          fName: prevValue.fName,
-          lName: prevValue.lName,
-          email: value
-        };
-      }
-    });
+    // This one line will replace the rest below using the spread meothod by modifying
+    //    with last entry. Note how [name] bracket is used instead for the object not be confused about what is key and what is not.
+    // with the latest ES6
+    setContact((preValue) => ({ ...preValue, [name]: value }));
+
+    // setContact(prevValue => {
+    //   if (name === "fName") {
+    //     return {
+    //       fName: value,
+    //       lName: prevValue.lName,
+    //       email: prevValue.email
+    //     };
+    //   } else if (name === "lName") {
+    //     return {
+    //       fName: prevValue.fName,
+    //       lName: value,
+    //       email: prevValue.email
+    //     };
+    //   } else if (name === "email") {
+    //     return {
+    //       fName: prevValue.fName,
+    //       lName: prevValue.lName,
+    //       email: value
+    //     };
+    //   }
+    // });
   }
 
   return (
